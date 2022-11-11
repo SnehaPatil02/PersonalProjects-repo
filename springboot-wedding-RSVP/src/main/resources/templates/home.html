@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Wedding RSVP</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+<h1>Guests List</h1>
+
+<a th:href="@{/showGuestForm}" class="btn btn-primary btn-sm mb-3">Add Guest</a>
+<br><br>
+<table border = "1" class="table table-striped table-responsive-md">
+<thead>
+<tr>
+<th>Guest Full name</th>
+<th>Time</th>
+<th>Phone Number</th>
+<th>No of People</th>
+<th>IsComing</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="guest : ${listGuests}">
+<td th:text="${guest.fullName}"></td>
+<td th:text="${guest.time}"></td>
+<td th:text="${guest.phoneNo}"></td>
+<td th:text="${guest.noOfPeople}"></td>
+<td> <a th:if="${guest.isComing} == true">yes</a>
+ <a th:unless="${guest.isComing} == false">no</a></td>
+
+<td> <a th:href="@{/showFormForUpdate/{id}(id=${guest.id})}" class="btn btn-primary">Update</a>
+<a th:href="@{/deleteGuest/{id}(id=${guest.id})}" class="btn btn-danger">Delete</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+
+</div>
+
+
+</body>
+</html>
